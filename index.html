@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<script>
+const MY_WHATSAPP_NUMBER = "8801876899676";
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -742,7 +744,8 @@
 
             // Encode message for URL
             const encodedMessage = encodeURIComponent(whatsappMessage);
-            const whatsappUrl = `https://wa.me/8801876899676?text=${encodedMessage}`;
+            const whatsappUrl = `https://wa.me/${MY_WHATSAPP_NUMBER}?text=${encodedMessage}`;
+
 
             // Populate Modal Summary
             document.getElementById("orderIdBadge").textContent = `Order #${randomOrderNum}`;
