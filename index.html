@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -399,10 +400,7 @@
 
     <!-- ==================== JAVASCRIPT LOGIC ==================== -->
     <script>
-        // আপনার WhatsApp নাম্বার এখানে বসাবেন (দেশের কোড সহ, যেমন: 8801712345678)
-        const MY_WHATSAPP_NUMBER = "88017XXXXXXXX";
-
-        // 1. Product Catalog Data
+        // 1. Product Catalog Data (8 Realistic Gadgets with BDT Prices & Verified Unsplash Tech Photos)
         const products = [
             {
                 id: 1,
@@ -710,7 +708,7 @@
             }
         }
 
-        // 8. Checkout Submission & WhatsApp Integration
+        // 8. Checkout Submission & Order Summary Modal
         function handleOrderSubmit(event) {
             event.preventDefault();
             if (cart.length === 0) return;
@@ -723,28 +721,7 @@
             const grandTotal = subtotal + DELIVERY_CHARGE;
             const randomOrderNum = "IB-" + Math.floor(1000 + Math.random() * 9000);
 
-            // Build items description for WhatsApp message
-            let itemsText = "";
-            cart.forEach((item, index) => {
-                itemsText += `${index + 1}. ${item.name} (${item.qty} pcs) - ৳ ${item.price * item.qty}\n`;
-            });
-
-            // Create formatted WhatsApp message
-            const whatsappMessage = `*🛍️ NEW ORDER: ${randomOrderNum}*\n\n` +
-                `*Customer Details:*\n` +
-                `👤 Name: ${name}\n` +
-                `📞 Phone: ${phone}\n` +
-                `📍 Address: ${address}\n\n` +
-                `*Order Items:*\n${itemsText}\n` +
-                `🚚 Delivery Fee: ৳ ${DELIVERY_CHARGE}\n` +
-                `💰 *Total Amount: ৳ ${grandTotal}*\n\n` +
-                `Payment Method: Cash on Delivery`;
-
-            // Encode message for URL
-            const encodedMessage = encodeURIComponent(whatsappMessage);
-            const whatsappUrl = `https://wa.me/${MY_WHATSAPP_NUMBER}?text=${encodedMessage}`;
-
-            // Populate Modal Summary
+            // Populate Modal
             document.getElementById("orderIdBadge").textContent = `Order #${randomOrderNum}`;
             const itemsListHtml = cart.map(item => `
                 <div class="flex justify-between text-xs text-slate-600">
@@ -781,11 +758,6 @@
             const modal = document.getElementById("orderModal");
             modal.classList.remove("hidden");
             modal.classList.add("flex");
-
-            // Automatically open WhatsApp with the order details after a brief delay
-            setTimeout(() => {
-                window.open(whatsappUrl, '_blank');
-            }, 1000);
         }
 
         function closeOrderModal() {
@@ -815,3 +787,4 @@
     </script>
 </body>
 </html>
+```
