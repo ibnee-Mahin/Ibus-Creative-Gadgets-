@@ -712,6 +712,7 @@
 
         // 8. Checkout Submission & WhatsApp Integration
                 // 8. Checkout Submission & WhatsApp Integration (Direct Redirect)
+                // 8. Checkout Submission & Direct WhatsApp Redirect
         function handleOrderSubmit(event) {
             event.preventDefault();
             if (cart.length === 0) return;
@@ -729,6 +730,32 @@
             cart.forEach((item, index) => {
                 itemsText += `${index + 1}. ${item.name} (${item.qty} pcs) - ৳ ${item.price * item.qty}\n`;
             });
+
+            // Create formatted WhatsApp message
+            const whatsappMessage = `*🛍️ NEW ORDER: ${randomOrderNum}*\n\n` +
+                `*Customer Details:*\n` +
+                `👤 Name: ${name}\n` +
+                `📞 Phone: ${phone}\n` +
+                `📍 Address: ${address}\n\n` +
+                `*Order Items:*\n${itemsText}\n` +
+                `🚚 Delivery Fee: ৳ ${DELIVERY_CHARGE}\n` +
+                `💰 *Total Amount: ৳ ${grandTotal}*\n\n` +
+                `Payment Method: Cash on Delivery`;
+
+            // Encode message for URL
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            const whatsappUrl = `https://wa.me/${MY_WHATSAPP_NUMBER}?text=${encodedMessage}`;
+
+            // Reset Cart & Form, Close Drawer
+            cart = [];
+            updateCartUI();
+            document.getElementById("checkoutForm").reset();
+            toggleCart(false);
+
+            // Directly redirect user to WhatsApp to complete order
+            window.location.href = whatsappUrl;
+        }
+
 
             // Create formatted WhatsApp message
             const whatsappMessage = `*🛍️ NEW ORDER: ${randomOrderNum}*\n\n` +
