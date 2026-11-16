@@ -275,6 +275,21 @@
         </div>
     </main>
 
+    <!-- ==================== PRODUCT DETAILS MODAL ==================== -->
+    <div id="productModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/75 backdrop-blur-xs">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-7 shadow-2xl border border-slate-100 relative space-y-5 animate-[fadeIn_0.2s_ease-out]">
+            <!-- Close Button -->
+            <button onclick="closeProductModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <!-- Modal Content (Dynamically Populated) -->
+            <div id="modalContent" class="space-y-4">
+                <!-- Filled via JS -->
+            </div>
+        </div>
+    </div>
+
     <!-- ==================== SLIDE-OUT SHOPPING CART DRAWER ==================== -->
     <div id="cartOverlay" onclick="toggleCart(false)" class="fixed inset-0 bg-slate-950/60 backdrop-blur-xs z-50 hidden transition-opacity opacity-0"></div>
 
@@ -434,6 +449,7 @@
                 category: "Smart Gadgets",
                 price: 3250,
                 specs: "1.96\" Always-On Display • BT Calling • IP68",
+                description: "Experience next-level smart living with the Ibus Watch Ultra AMOLED. Features a brilliant crystal-clear display, Bluetooth calling support, fitness tracking, and robust water resistance for everyday use.",
                 badge: "Best Seller",
                 image: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?auto=format&fit=crop&w=700&q=80"
             },
@@ -443,6 +459,7 @@
                 category: "Audio",
                 price: 2190,
                 specs: "35dB Active Noise Cancellation • 30H Battery",
+                description: "Immerse yourself in pure studio-grade sound. AeroPods Pro features powerful Active Noise Cancellation to block out ambient distraction and up to 30 hours of total playtime with the charging case.",
                 badge: "Hot Deal",
                 image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=700&q=80"
             },
@@ -452,6 +469,7 @@
                 category: "Audio",
                 price: 2850,
                 specs: "20W Deep Bass • Waterproof • Dynamic LED",
+                description: "Bring the party anywhere with rich 360-degree sound and pounding deep bass. Built with rugged waterproof protection and dynamic RGB lighting that pulses to your music.",
                 badge: null,
                 image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=700&q=80"
             },
@@ -461,6 +479,7 @@
                 category: "Accessories",
                 price: 4490,
                 specs: "Hot-Swappable Red Switches • Wireless + Type-C",
+                description: "Designed for typists and gamers alike. Enjoy buttery smooth tactile feedback with hot-swappable mechanical switches, multi-device wireless connectivity, and gorgeous backlighting.",
                 badge: "Pro Gear",
                 image: "https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&w=700&q=80"
             },
@@ -470,6 +489,7 @@
                 category: "Accessories",
                 price: 2350,
                 specs: "22.5W PD Fast Charge • Digital LED Meter",
+                description: "Never run out of juice on the go. High-capacity 20,000mAh battery equipped with 22.5W Power Delivery fast charging and a precise digital percentage status meter.",
                 badge: null,
                 image: "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?auto=format&fit=crop&w=700&q=80"
             },
@@ -479,6 +499,7 @@
                 category: "Accessories",
                 price: 1790,
                 specs: "12,000 DPI Sensor • 59g Honeycomb • RGB",
+                description: "Ultra-lightweight 59g honeycomb shell design engineered for lightning-fast flicks and zero hand fatigue during long gaming or creative workflow sessions.",
                 badge: null,
                 image: "https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=700&q=80"
             },
@@ -488,6 +509,7 @@
                 category: "Smart Gadgets",
                 price: 6490,
                 specs: "AI Face Tracking • Foldable • Anti-Shake",
+                description: "Capture cinematic buttery-smooth smartphone videos effortlessly. Features advanced AI face tracking, foldable portability, and professional 3-axis stabilization.",
                 badge: "Creator Pick",
                 image: "https://images.unsplash.com/photo-1589254065878-42c9da997008?auto=format&fit=crop&w=700&q=80"
             },
@@ -497,6 +519,7 @@
                 category: "Smart Gadgets",
                 price: 1650,
                 specs: "Touch Dimming • 3 Color Modes • USB Port",
+                description: "Optimize your desk setup with eye-friendly adjustable illumination. Features smooth touch brightness dimming, 3 color temperature modes, and a convenient USB charging output.",
                 badge: null,
                 image: "https://images.unsplash.com/photo-1534073828943-f801091bb18c?auto=format&fit=crop&w=700&q=80"
             }
@@ -535,8 +558,8 @@
             emptyState.classList.add("hidden");
             grid.innerHTML = filtered.map(product => `
                 <article class="group bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-xs hover:shadow-xl hover:border-indigo-200 transition-all duration-300 flex flex-col">
-                    <!-- Product Image Container -->
-                    <div class="relative aspect-[4/3] bg-slate-100 overflow-hidden">
+                    <!-- Product Image Container (Clickable for Details) -->
+                    <div onclick="openProductModal(${product.id})" class="relative aspect-[4/3] bg-slate-100 overflow-hidden cursor-pointer">
                         <img 
                             src="${product.image}" 
                             alt="${product.name}" 
@@ -557,7 +580,7 @@
                     <!-- Product Details -->
                     <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
                         <div>
-                            <h3 class="font-display font-bold text-slate-900 text-base sm:text-lg leading-snug group-hover:text-indigo-600 transition-colors">
+                            <h3 onclick="openProductModal(${product.id})" class="font-display font-bold text-slate-900 text-base sm:text-lg leading-snug group-hover:text-indigo-600 transition-colors cursor-pointer">
                                 ${product.name}
                             </h3>
                             <p class="text-slate-500 text-xs mt-1.5 leading-relaxed">
@@ -586,7 +609,50 @@
             `).join("");
         }
 
-        // 4. Category Filter Tab Event Listeners
+        // 4. Product Details Modal Functions
+        function openProductModal(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            const modalContent = document.getElementById("modalContent");
+            modalContent.innerHTML = `
+                <div class="aspect-[16/10] rounded-xl overflow-hidden bg-slate-100 border border-slate-200 mb-4">
+                    <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover">
+                </div>
+                <div class="space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-lg">${product.category}</span>
+                        <span class="font-display font-extrabold text-xl text-slate-900">${formatBDT(product.price)}</span>
+                    </div>
+                    <h3 class="font-display font-extrabold text-xl text-slate-900">${product.name}</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">${product.description || product.specs}</p>
+                    <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-700 space-y-1">
+                        <p class="font-bold text-slate-900">Key Specifications:</p>
+                        <p>${product.specs}</p>
+                    </div>
+                </div>
+                <div class="pt-3">
+                    <button onclick="addToCart(${product.id}); closeProductModal(); toggleCart(true);" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg shadow-indigo-600/20 transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span>Add to Cart & Checkout</span>
+                    </button>
+                </div>
+            `;
+
+            const modal = document.getElementById("productModal");
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeProductModal() {
+            const modal = document.getElementById("productModal");
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+            document.body.style.overflow = "";
+        }
+
+        // 5. Category Filter Tab Event Listeners
         document.querySelectorAll(".category-btn").forEach(btn => {
             btn.addEventListener("click", () => {
                 document.querySelectorAll(".category-btn").forEach(b => {
@@ -601,7 +667,7 @@
             });
         });
 
-        // 5. Live Search Sync
+        // 6. Live Search Sync
         const desktopSearch = document.getElementById("desktopSearchInput");
         const mobileSearch = document.getElementById("mobileSearchInput");
 
@@ -621,7 +687,7 @@
             document.querySelector('.category-btn[data-category="All"]').click();
         }
 
-        // 6. Shopping Cart Operations
+        // 7. Shopping Cart Operations
         function addToCart(productId) {
             const product = products.find(p => p.id === productId);
             if (!product) return;
@@ -713,7 +779,7 @@
             document.getElementById("cartTotal").textContent = formatBDT(subtotal + DELIVERY_CHARGE);
         }
 
-        // 7. Drawer & Mobile Menu Controls
+        // 8. Drawer & Mobile Menu Controls
         function toggleCart(open) {
             const overlay = document.getElementById("cartOverlay");
             const drawer = document.getElementById("cartDrawer");
@@ -748,7 +814,7 @@
             }
         }
 
-        // 8. Checkout Submission & Direct WhatsApp Redirect
+        // 9. Checkout Submission & Direct WhatsApp Redirect
         function handleOrderSubmit(event) {
             event.preventDefault();
             if (cart.length === 0) return;
@@ -789,7 +855,7 @@
             window.location.href = whatsappUrl;
         }
 
-        // 9. Toast Notification Helper
+        // 10. Toast Notification Helper
         let toastTimeout;
         function showToast(message) {
             const toast = document.getElementById("toastNotification");
