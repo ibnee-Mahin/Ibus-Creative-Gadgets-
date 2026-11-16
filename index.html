@@ -378,8 +378,8 @@
 
                     <!-- bKash Instructions & TrxID Input (Hidden by default) -->
                     <div id="bkashFields" class="hidden p-3.5 bg-pink-50 rounded-xl border border-pink-200 space-y-2 text-xs">
-                        <p class="text-pink-900 font-medium">
-                            📌 Send total amount to our bKash Personal/Merchant: <strong class="font-bold">01876899676</strong> (Send Money / Payment)
+                        <p id="bkashInstructionText" class="text-pink-900 font-medium">
+                            📌 Send total amount to our bKash Number: <strong id="displayBkashNum" class="font-bold">01876899676</strong> (Send Money / Payment)
                         </p>
                         <div>
                             <label class="block font-semibold text-pink-900 mb-1">bKash Sender Number & TrxID *</label>
@@ -464,9 +464,20 @@
 
     <!-- ==================== JAVASCRIPT LOGIC ==================== -->
     <script>
-        // WhatsApp Number Configured
-        const MY_WHATSAPP_NUMBER = "8801876899676";
-        const BKASH_NUMBER = "8801628779156";
+        // -----------------------------------------------------------------
+        // আপনার আলাদা নম্বর দুটি এখানে সেট করুন:
+        // -----------------------------------------------------------------
+        const MY_WHATSAPP_NUMBER = "8801876899676"; // অর্ডার যাওয়ার WhatsApp নম্বর
+        const BKASH_NUMBER = "0628779156";       // টাকা পাঠানোর বিকাশ নম্বর (আপনার বিকাশ নম্বরটি এখানে বসিয়ে দিন)
+        // -----------------------------------------------------------------
+
+        // Auto-display bKash number in checkout instructions
+        window.addEventListener("DOMContentLoaded", () => {
+            const displayEl = document.getElementById("displayBkashNum");
+            if (displayEl) displayEl.textContent = BKASH_NUMBER;
+            renderProducts();
+            updateCartUI();
+        });
 
         // 1. Product Catalog Data (8 Realistic Gadgets with BDT Prices)
         const products = [
@@ -857,7 +868,7 @@
             }
         }
 
-        // 10. Checkout Submission & Direct WhatsApp Redirect (with bKash Info)
+        // 10. Checkout Submission & Direct WhatsApp Redirect (Separate Numbers)
         function handleOrderSubmit(event) {
             event.preventDefault();
             if (cart.length === 0) return;
@@ -877,10 +888,10 @@
                 itemsText += `${index + 1}. ${item.name} (${item.qty} pcs) - ৳ ${item.price * item.qty}\n`;
             });
 
-            // Build WhatsApp message including payment details
+            // Build WhatsApp message including payment details and receiving bkash number
             let paymentDetailsText = `Payment Method: ${paymentMethod}`;
             if (paymentMethod === "bKash Payment") {
-                paymentDetailsText += `\n📱 bKash TrxID / Info: ${bkashTrx}`;
+                paymentDetailsText += `\n📱 bKash TrxID / Sender: ${bkashTrx}\n(Paid to bKash: ${BKASH_NUMBER})`;
             }
 
             const whatsappMessage = `*🛍️ NEW ORDER: ${randomOrderNum}*\n\n` +
@@ -900,7 +911,7 @@
             cart = [];
             updateCartUI();
             document.getElementById("checkoutForm").reset();
-            togglePaymentFields(); // Reset bKash fields view
+            togglePaymentFields();
             toggleCart(false);
 
             // Direct Redirect to WhatsApp
@@ -919,12 +930,6 @@
                 toast.classList.add("translate-y-20", "opacity-0");
             }, 2400);
         }
-
-        // Initialize Shop on Load
-        window.addEventListener("DOMContentLoaded", () => {
-            renderProducts();
-            updateCartUI();
-        });
     </script>
 </body>
 </html>
