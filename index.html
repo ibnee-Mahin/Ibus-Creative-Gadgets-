@@ -4,13 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ibus Creative Gadgets | Next-Gen Tech & Smart Lifestyle</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter & Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome for crisp UI & Tech Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <script>
@@ -29,11 +26,6 @@
                             600: '#4f46e5',
                             700: '#4338ca',
                             900: '#1e1b4b',
-                        },
-                        dark: {
-                            800: '#1e293b',
-                            900: '#0f172a',
-                            950: '#090d16',
                         }
                     }
                 }
@@ -47,889 +39,307 @@
     <header class="sticky top-0 z-40 bg-slate-950/95 backdrop-blur-md border-b border-slate-800 text-white shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 sm:h-20 gap-4">
-                
-                <!-- Brand Logo -->
                 <a href="#" class="flex items-center gap-2.5 group shrink-0">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-cyan-500 flex items-center justify-center shadow-lg shadow-indigo-500/30 group-hover:scale-105 transition-transform">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-cyan-500 flex items-center justify-center shadow-lg shadow-indigo-500/30">
                         <i class="fa-solid fa-microchip text-white text-lg"></i>
                     </div>
                     <div>
-                        <span class="font-display font-extrabold text-lg sm:text-xl tracking-tight bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent block leading-none">
-                            Ibus Creative
-                        </span>
-                        <span class="text-[11px] font-semibold uppercase tracking-widest text-cyan-400 block mt-0.5">
-                            Gadgets BD
-                        </span>
+                        <span class="font-display font-extrabold text-lg sm:text-xl tracking-tight text-white block leading-none">Ibus Creative</span>
+                        <span class="text-[11px] font-semibold uppercase tracking-widest text-cyan-400 block mt-0.5">Gadgets BD</span>
                     </div>
                 </a>
 
-                <!-- Live Search Bar (Desktop & Tablet) -->
                 <div class="hidden md:flex flex-1 max-w-md mx-4">
                     <div class="relative w-full">
                         <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                        <input 
-                            type="text" 
-                            id="desktopSearchInput"
-                            placeholder="Search smartwatches, earbuds, keyboards..." 
-                            class="w-full bg-slate-900/90 border border-slate-700/80 text-sm text-white placeholder-slate-400 rounded-xl pl-10 pr-4 py-2.5 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/30 transition-all"
-                        >
+                        <input type="text" id="desktopSearchInput" placeholder="Search gadgets..." class="w-full bg-slate-900/90 border border-slate-700/80 text-sm text-white placeholder-slate-400 rounded-xl pl-10 pr-4 py-2.5 focus:outline-none focus:border-indigo-500">
                     </div>
                 </div>
 
-                <!-- Right Actions: Desktop Links + Menu Button + Cart Button -->
                 <div class="flex items-center gap-2.5">
-                    <a href="#products-section" class="hidden lg:inline-block text-sm font-medium text-slate-300 hover:text-white transition-colors px-3 py-2">
-                        Catalog
+                    <a href="admin.html" target="_blank" class="hidden lg:inline-flex items-center gap-1.5 text-xs font-bold text-cyan-400 bg-slate-900 border border-slate-700 hover:bg-slate-800 px-3 py-2 rounded-xl transition-colors">
+                        <i class="fa-solid fa-gauge"></i> Admin Panel
                     </a>
-                    <a href="#footer-contact" class="hidden lg:inline-block text-sm font-medium text-slate-300 hover:text-white transition-colors px-3 py-2">
-                        Support
-                    </a>
-
-                    <!-- Mobile Menu Trigger Button -->
-                    <button 
-                        onclick="toggleMobileMenu(true)" 
-                        aria-label="Open Navigation Menu"
-                        class="md:hidden inline-flex items-center justify-center w-10 h-10 bg-slate-800/90 hover:bg-slate-700 border border-slate-700 text-white rounded-xl transition-all active:scale-95"
-                    >
-                        <i class="fa-solid fa-bars text-lg text-cyan-400"></i>
+                    <button onclick="toggleCart(true)" class="relative inline-flex items-center gap-2 bg-slate-800 hover:bg-indigo-600 border border-slate-700 text-white px-4 py-2.5 rounded-xl font-medium text-sm transition-all shadow-sm">
+                        <i class="fa-solid fa-bag-shopping text-cyan-400"></i>
+                        <span>Cart</span>
+                        <span id="cartBadge" class="inline-flex items-center justify-center min-w-[22px] h-[22px] px-1.5 text-xs font-bold bg-indigo-500 text-white rounded-full">0</span>
                     </button>
-
-                    <!-- Cart Trigger Button -->
-                    <button 
-                        onclick="toggleCart(true)" 
-                        aria-label="Open Shopping Cart"
-                        class="relative inline-flex items-center gap-2 bg-slate-800/90 hover:bg-indigo-600 border border-slate-700 hover:border-indigo-500 text-white px-3.5 sm:px-4 py-2.5 rounded-xl font-medium text-sm transition-all duration-200 shadow-sm active:scale-95"
-                    >
-                        <i class="fa-solid fa-bag-shopping text-base text-cyan-400 group-hover:text-white"></i>
-                        <span class="hidden sm:inline">Cart</span>
-                        <span id="cartBadge" class="inline-flex items-center justify-center min-w-[22px] h-[22px] px-1.5 text-xs font-bold bg-indigo-500 text-white rounded-full shadow">
-                            0
-                        </span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Mobile Search Bar -->
-            <div class="md:hidden pb-3">
-                <div class="relative w-full">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                    <input 
-                        type="text" 
-                        id="mobileSearchInput"
-                        placeholder="Search gadgets in store..." 
-                        class="w-full bg-slate-900 border border-slate-700 text-sm text-white placeholder-slate-400 rounded-xl pl-10 pr-4 py-2.5 focus:outline-none focus:border-indigo-500"
-                    >
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- ==================== MOBILE MENU DRAWER ==================== -->
-    <div id="mobileMenuOverlay" onclick="toggleMobileMenu(false)" class="fixed inset-0 bg-slate-950/60 backdrop-blur-xs z-50 hidden transition-opacity opacity-0"></div>
-
-    <div id="mobileMenuDrawer" class="fixed top-0 left-0 h-full w-[280px] bg-slate-950 text-white z-50 shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col border-r border-slate-800">
-        <!-- Menu Header -->
-        <div class="px-5 py-5 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
-            <div class="flex items-center gap-2.5">
-                <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white text-sm">
-                    <i class="fa-solid fa-microchip"></i>
-                </div>
-                <span class="font-display font-bold text-base">Ibus Menu</span>
-            </div>
-            <button onclick="toggleMobileMenu(false)" aria-label="Close Menu" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-300 transition-colors">
-                <i class="fa-solid fa-xmark text-base"></i>
-            </button>
-        </div>
-
-        <!-- Menu Links -->
-        <div class="flex-1 overflow-y-auto py-6 px-4 space-y-3">
-            <a href="#" onclick="toggleMobileMenu(false)" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-900/80 hover:bg-indigo-600/20 text-slate-200 hover:text-white font-medium text-sm transition-all border border-slate-800">
-                <i class="fa-solid fa-house text-cyan-400 w-5"></i>
-                <span>Home</span>
-            </a>
-            <a href="#products-section" onclick="toggleMobileMenu(false)" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-900/80 hover:bg-indigo-600/20 text-slate-200 hover:text-white font-medium text-sm transition-all border border-slate-800">
-                <i class="fa-solid fa-box-archive text-cyan-400 w-5"></i>
-                <span>All Gadgets Catalog</span>
-            </a>
-            <button onclick="toggleMobileMenu(false); toggleCart(true);" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-900/80 hover:bg-indigo-600/20 text-slate-200 hover:text-white font-medium text-sm transition-all border border-slate-800 text-left">
-                <i class="fa-solid fa-bag-shopping text-cyan-400 w-5"></i>
-                <span>Shopping Cart</span>
-            </button>
-            <a href="#footer-contact" onclick="toggleMobileMenu(false)" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-900/80 hover:bg-indigo-600/20 text-slate-200 hover:text-white font-medium text-sm transition-all border border-slate-800">
-                <i class="fa-solid fa-headset text-cyan-400 w-5"></i>
-                <span>Support & Contact</span>
-            </a>
-        </div>
-
-        <!-- Menu Footer -->
-        <div class="p-4 bg-slate-900/50 border-t border-slate-800 text-xs text-slate-400 text-center">
-            <p>Cash on Delivery & bKash Available 🇧🇩</p>
-        </div>
-    </div>
-
-    <!-- ==================== HERO BANNER ==================== -->
-    <section class="relative overflow-hidden bg-slate-950 text-white border-b border-slate-800">
-        <!-- Ambient Gradient Orbs -->
-        <div class="absolute -top-24 -left-24 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute -bottom-24 right-0 w-96 h-96 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none"></div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-24 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-                
-                <!-- Left Copy -->
-                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-cyan-300 text-xs sm:text-sm font-semibold">
-                        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-                        Official Gadget Store in Bangladesh • COD & bKash
-                    </div>
-
-                    <h1 class="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.12]">
-                        Upgrade Your Everyday with <span class="bg-gradient-to-r from-indigo-400 via-cyan-300 to-indigo-400 bg-clip-text text-transparent">Creative Tech.</span>
-                    </h1>
-
-                    <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                        Discover authentic smartwatches, studio-grade wireless audio, mechanical gear, and smart desk essentials at <strong class="text-white">Ibus Creative Gadgets</strong>. Fast nationwide delivery across Bangladesh.
-                    </p>
-
-                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-                        <a href="#products-section" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-7 py-3.5 rounded-xl shadow-lg shadow-indigo-600/30 transition-all hover:-translate-y-0.5">
-                            <span>Shop Now</span>
-                            <i class="fa-solid fa-arrow-down text-sm"></i>
-                        </a>
-                        <div class="flex items-center gap-4 text-xs sm:text-sm text-slate-400">
-                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-emerald-400"></i> 100% Authentic</span>
-                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-truck-fast text-cyan-400"></i> 48h BD Delivery</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Feature Visual Card -->
-                <div class="lg:col-span-5">
-                    <div class="relative rounded-2xl overflow-hidden border border-slate-800 bg-slate-900/70 p-3 shadow-2xl">
-                        <img 
-                            src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=900&q=80" 
-                            alt="Featured Smart Gadget" 
-                            onerror="this.src='https://placehold.co/800x600/1e293b/38bdf8?text=Ibus+Creative+Gadgets'"
-                            class="w-full h-64 sm:h-80 object-cover rounded-xl"
-                        >
-                        <div class="mt-3 flex items-center justify-between px-2 py-1">
-                            <div>
-                                <p class="text-xs text-cyan-400 font-semibold uppercase tracking-wider">Trending Flagship</p>
-                                <p class="font-display font-bold text-white text-base sm:text-lg">Amoled Ultra Series Watch</p>
-                            </div>
-                            <span class="bg-indigo-600/30 border border-indigo-500/40 text-indigo-200 font-bold px-3 py-1.5 rounded-lg text-sm">
-                                From ৳ 2,490
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="bg-slate-950 text-white border-b border-slate-800 py-14 sm:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+            <h1 class="font-display text-3xl sm:text-5xl font-extrabold">
+                Upgrade Your Everyday with <span class="bg-gradient-to-r from-indigo-400 to-cyan-300 bg-clip-text text-transparent">Creative Tech.</span>
+            </h1>
+            <p class="text-slate-300 text-sm sm:text-base max-w-xl mx-auto">
+                Official Gadget Store in Bangladesh • Cash on Delivery & bKash
+            </p>
+            <div class="pt-2">
+                <a href="admin.html" target="_blank" class="inline-flex md:hidden items-center gap-2 bg-slate-900 border border-slate-700 text-cyan-400 px-4 py-2 rounded-xl text-xs font-bold">
+                    <i class="fa-solid fa-gauge"></i> Open Admin Panel to Add/Edit Products
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- ==================== PRODUCTS & FILTER SECTION ==================== -->
-    <main id="products-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-        
-        <!-- Section Header & Category Filter Tabs -->
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+    <!-- ==================== PRODUCTS SECTION ==================== -->
+    <main id="products-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-8">
             <div>
-                <span class="text-indigo-600 font-bold text-xs uppercase tracking-widest">Curated Collection</span>
-                <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">
-                    Explore Our Gadgets
-                </h2>
+                <span class="text-indigo-600 font-bold text-xs uppercase tracking-widest">Store Inventory</span>
+                <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Available Gadgets</h2>
             </div>
-
-            <!-- Category Filter Pills -->
-            <div id="categoryTabs" class="flex flex-wrap items-center gap-2">
-                <button data-category="All" class="category-btn active px-4 py-2.5 rounded-xl text-sm font-semibold transition-all bg-slate-900 text-white shadow-sm">
-                    All Gadgets
-                </button>
-                <button data-category="Smart Gadgets" class="category-btn px-4 py-2.5 rounded-xl text-sm font-semibold transition-all bg-white text-slate-600 hover:bg-slate-100 border border-slate-200">
-                    Smart Gadgets
-                </button>
-                <button data-category="Audio" class="category-btn px-4 py-2.5 rounded-xl text-sm font-semibold transition-all bg-white text-slate-600 hover:bg-slate-100 border border-slate-200">
-                    Audio
-                </button>
-                <button data-category="Accessories" class="category-btn px-4 py-2.5 rounded-xl text-sm font-semibold transition-all bg-white text-slate-600 hover:bg-slate-100 border border-slate-200">
-                    Accessories
-                </button>
+            <div id="categoryTabs" class="flex flex-wrap gap-2">
+                <button data-category="All" class="category-btn active px-4 py-2 rounded-xl text-sm font-semibold bg-slate-900 text-white">All</button>
+                <button data-category="Smart Gadgets" class="category-btn px-4 py-2 rounded-xl text-sm font-semibold bg-white text-slate-600 border border-slate-200">Smart Gadgets</button>
+                <button data-category="Audio" class="category-btn px-4 py-2 rounded-xl text-sm font-semibold bg-white text-slate-600 border border-slate-200">Audio</button>
+                <button data-category="Accessories" class="category-btn px-4 py-2 rounded-xl text-sm font-semibold bg-white text-slate-600 border border-slate-200">Accessories</button>
             </div>
         </div>
 
-        <!-- Product Grid -->
-        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <!-- Dynamically populated by JavaScript -->
-        </div>
-
-        <!-- Empty Search State -->
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
         <div id="emptyState" class="hidden text-center py-16 bg-white rounded-2xl border border-slate-200 mt-6">
-            <div class="w-16 h-16 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-4 text-2xl">
-                <i class="fa-solid fa-box-open"></i>
-            </div>
-            <h3 class="font-display font-bold text-lg text-slate-800">No matching gadgets found</h3>
-            <p class="text-slate-500 text-sm mt-1">Try searching with a different keyword or reset the category filter.</p>
-            <button onclick="resetFilters()" class="mt-4 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl transition-colors">
-                Reset Filters
-            </button>
+            <h3 class="font-display font-bold text-lg text-slate-800">No products found</h3>
+            <p class="text-slate-500 text-sm mt-1">Use the Admin Panel to add new products to your store!</p>
+            <a href="admin.html" target="_blank" class="inline-block mt-4 px-5 py-2.5 bg-indigo-600 text-white text-sm font-semibold rounded-xl">Open Admin Panel</a>
         </div>
     </main>
 
-    <!-- ==================== PRODUCT DETAILS MODAL ==================== -->
-    <div id="productModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/75 backdrop-blur-xs">
-        <div class="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-7 shadow-2xl border border-slate-100 relative space-y-5 animate-[fadeIn_0.2s_ease-out]">
-            <!-- Close Button -->
-            <button onclick="closeProductModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition-colors">
+    <!-- ==================== PRODUCT MODAL ==================== -->
+    <div id="productModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/75">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 relative space-y-4">
+            <button onclick="closeProductModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center text-slate-700">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
-
-            <!-- Modal Content (Dynamically Populated) -->
-            <div id="modalContent" class="space-y-4">
-                <!-- Filled via JS -->
-            </div>
+            <div id="modalContent"></div>
         </div>
     </div>
 
-    <!-- ==================== SLIDE-OUT SHOPPING CART DRAWER ==================== -->
-    <div id="cartOverlay" onclick="toggleCart(false)" class="fixed inset-0 bg-slate-950/60 backdrop-blur-xs z-50 hidden transition-opacity opacity-0"></div>
-
-    <aside id="cartDrawer" class="fixed top-0 right-0 h-full w-full sm:w-[440px] bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
-        
-        <!-- Drawer Header -->
-        <div class="px-6 py-5 bg-slate-950 text-white flex items-center justify-between border-b border-slate-800">
-            <div class="flex items-center gap-2.5">
-                <i class="fa-solid fa-cart-shopping text-cyan-400"></i>
-                <h2 class="font-display font-bold text-lg">Your Shopping Cart</h2>
-                <span id="drawerItemCount" class="text-xs bg-indigo-600 px-2 py-0.5 rounded-full font-semibold">0 items</span>
-            </div>
-            <button onclick="toggleCart(false)" aria-label="Close Cart" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-300 hover:text-white transition-colors">
-                <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
+    <!-- ==================== CART DRAWER ==================== -->
+    <div id="cartOverlay" onclick="toggleCart(false)" class="fixed inset-0 bg-slate-950/60 z-50 hidden opacity-0 transition-opacity"></div>
+    <aside id="cartDrawer" class="fixed top-0 right-0 h-full w-full sm:w-[440px] bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+        <div class="px-6 py-5 bg-slate-950 text-white flex justify-between items-center">
+            <h2 class="font-display font-bold text-lg">Shopping Cart (<span id="drawerItemCount">0</span>)</h2>
+            <button onclick="toggleCart(false)" class="text-slate-300"><i class="fa-solid fa-xmark text-lg"></i></button>
         </div>
-
-        <!-- Scrollable Body: Cart Items + Checkout Form -->
         <div class="flex-1 overflow-y-auto p-6 space-y-6">
-            
-            <!-- Cart Items List -->
-            <div id="cartItemsContainer" class="space-y-4">
-                <!-- Populated dynamically -->
-            </div>
-
-            <!-- Empty Cart View -->
-            <div id="emptyCartMessage" class="text-center py-12">
-                <div class="w-16 h-16 rounded-2xl bg-indigo-50 text-indigo-500 flex items-center justify-center mx-auto mb-3 text-2xl">
-                    <i class="fa-solid fa-bag-shopping"></i>
-                </div>
-                <p class="font-display font-bold text-slate-800 text-base">Your cart is currently empty</p>
-                <p class="text-slate-500 text-sm mt-1">Explore our collection and add your favorite tech!</p>
-            </div>
-
-            <!-- Checkout Form Section (Visible when cart has items) -->
+            <div id="cartItemsContainer" class="space-y-4"></div>
+            <div id="emptyCartMessage" class="text-center py-12 text-slate-500">Cart is empty</div>
             <div id="checkoutSection" class="hidden pt-4 border-t border-slate-200 space-y-4">
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2 text-sm">
-                    <div class="flex justify-between text-slate-600">
-                        <span>Subtotal</span>
-                        <span id="cartSubtotal" class="font-semibold text-slate-900">৳ 0</span>
-                    </div>
-                    <div class="flex justify-between text-slate-600">
-                        <span>Delivery Charge (All BD)</span>
-                        <span id="deliveryFee" class="font-semibold text-slate-900">৳ 80</span>
-                    </div>
-                    <div class="flex justify-between text-base font-extrabold text-slate-900 pt-2 border-t border-slate-200">
-                        <span>Total Payable</span>
-                        <span id="cartTotal" class="text-indigo-600">৳ 0</span>
-                    </div>
+                <div class="bg-slate-50 p-4 rounded-xl text-sm space-y-1">
+                    <div class="flex justify-between"><span>Subtotal:</span><span id="cartSubtotal" class="font-semibold">৳ 0</span></div>
+                    <div class="flex justify-between"><span>Delivery:</span><span>৳ 80</span></div>
+                    <div class="flex justify-between font-bold text-base pt-2 border-t"><span>Total:</span><span id="cartTotal" class="text-indigo-600">৳ 0</span></div>
                 </div>
-
-                <form id="checkoutForm" onsubmit="handleOrderSubmit(event)" class="space-y-3.5">
-                    <h3 class="font-display font-bold text-slate-900 text-sm uppercase tracking-wider flex items-center gap-2">
-                        <i class="fa-solid fa-truck text-indigo-600"></i> Delivery Information
-                    </h3>
-
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">Full Name *</label>
-                        <input type="text" id="custName" required placeholder="e.g. Tanvir Ahmed" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-500/20">
+                <form id="checkoutForm" onsubmit="handleOrderSubmit(event)" class="space-y-3">
+                    <input type="text" id="custName" required placeholder="Full Name" class="w-full px-3 py-2 text-sm rounded-xl border">
+                    <input type="tel" id="custPhone" required placeholder="Phone (e.g. 017XXXXXXXX)" class="w-full px-3 py-2 text-sm rounded-xl border">
+                    <textarea id="custAddress" rows="2" required placeholder="Delivery Address" class="w-full px-3 py-2 text-sm rounded-xl border"></textarea>
+                    
+                    <div class="grid grid-cols-2 gap-2">
+                        <label class="p-2.5 rounded-xl border text-xs font-bold cursor-pointer flex items-center gap-2">
+                            <input type="radio" name="pay" value="COD" checked onchange="togglePayFields()"> COD
+                        </label>
+                        <label class="p-2.5 rounded-xl border text-xs font-bold cursor-pointer flex items-center gap-2">
+                            <input type="radio" name="pay" value="bKash" onchange="togglePayFields()"> bKash
+                        </label>
                     </div>
-
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">Phone Number (BD) *</label>
-                        <input type="tel" id="custPhone" required placeholder="e.g. 017XXXXXXXX" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-500/20">
+                    <div id="bkashBox" class="hidden p-3 bg-pink-50 rounded-xl border border-pink-200 text-xs space-y-1">
+                        <p class="text-pink-900">Send money to bKash: <strong id="lblBkash">01876899676</strong></p>
+                        <input type="text" id="bkashTrx" placeholder="Sender No & TrxID" class="w-full px-2.5 py-1.5 rounded border bg-white">
                     </div>
-
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">Full Delivery Address *</label>
-                        <textarea id="custAddress" rows="2" required placeholder="House, Road, Area, District (e.g. Mirpur 10, Dhaka)" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-500/20"></textarea>
-                    </div>
-
-                    <!-- Payment Method Selection -->
-                    <div class="pt-2 space-y-2">
-                        <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider">Select Payment Method *</label>
-                        <div class="grid grid-cols-2 gap-3">
-                            <label class="flex items-center gap-2.5 p-3 rounded-xl border border-slate-300 bg-white cursor-pointer hover:border-indigo-600 transition-colors">
-                                <input type="radio" name="paymentMethod" value="Cash on Delivery" checked onchange="togglePaymentFields()" class="text-indigo-600 focus:ring-indigo-500">
-                                <span class="text-xs font-bold text-slate-800">Cash on Delivery</span>
-                            </label>
-                            <label class="flex items-center gap-2.5 p-3 rounded-xl border border-slate-300 bg-white cursor-pointer hover:border-pink-600 transition-colors">
-                                <input type="radio" name="paymentMethod" value="bKash Payment" onchange="togglePaymentFields()" class="text-pink-600 focus:ring-pink-500">
-                                <span class="text-xs font-bold text-slate-800">bKash Payment</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- bKash Instructions & TrxID Input (Hidden by default) -->
-                    <div id="bkashFields" class="hidden p-3.5 bg-pink-50 rounded-xl border border-pink-200 space-y-2 text-xs">
-                        <p id="bkashInstructionText" class="text-pink-900 font-medium">
-                            📌 Send total amount to our bKash Number: <strong id="displayBkashNum" class="font-bold">01876899676</strong> (Send Money / Payment)
-                        </p>
-                        <div>
-                            <label class="block font-semibold text-pink-900 mb-1">bKash Sender Number & TrxID *</label>
-                            <input type="text" id="bkashTrx" placeholder="e.g. 017XXXXXX & TrxID: 9H7K..." class="w-full px-3 py-2 text-xs rounded-lg border border-pink-300 bg-white focus:outline-none focus:border-pink-600">
-                        </div>
-                    </div>
-
-                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-5 rounded-xl shadow-lg shadow-indigo-600/25 transition-all flex items-center justify-center gap-2 active:scale-[0.99]">
-                        <i class="fa-solid fa-circle-check"></i>
-                        <span>Confirm Order & Send to WhatsApp</span>
-                    </button>
+                    <button type="submit" class="w-full bg-indigo-600 text-white font-bold py-3 rounded-xl">Confirm Order via WhatsApp</button>
                 </form>
             </div>
         </div>
     </aside>
 
-    <!-- ==================== TOAST NOTIFICATION ==================== -->
-    <div id="toastNotification" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
-        <div class="bg-slate-900 text-white px-4 py-3 rounded-xl shadow-xl border border-slate-700 flex items-center gap-3 text-sm font-medium">
-            <span class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs">
-                <i class="fa-solid fa-check"></i>
-            </span>
-            <span id="toastMessage">Added to cart!</span>
-        </div>
-    </div>
-
-    <!-- ==================== FOOTER ==================== -->
-    <footer id="footer-contact" class="bg-slate-950 text-slate-300 border-t border-slate-800 mt-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                
-                <!-- Brand Info -->
-                <div class="space-y-3">
-                    <div class="flex items-center gap-2.5">
-                        <div class="w-9 h-9 rounded-xl bg-indigo-600 flex items-center justify-center text-white">
-                            <i class="fa-solid fa-microchip"></i>
-                        </div>
-                        <span class="font-display font-extrabold text-lg text-white">Ibus Creative Gadgets</span>
-                    </div>
-                    <p class="text-sm text-slate-400 leading-relaxed">
-                        Your trusted destination in Bangladesh for creative smart gadgets, premium audio gear, and modern workspace accessories.
-                    </p>
-                </div>
-
-                <!-- Quick Links -->
-                <div>
-                    <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider mb-3">Quick Links</h4>
-                    <ul class="space-y-2 text-sm text-slate-400">
-                        <li><a href="#" class="hover:text-cyan-400 transition-colors">Home</a></li>
-                        <li><a href="#products-section" class="hover:text-cyan-400 transition-colors">All Gadgets</a></li>
-                        <li><button onclick="toggleCart(true)" class="hover:text-cyan-400 transition-colors">View Shopping Cart</button></li>
-                        <li><span class="text-slate-500">COD & bKash Available Nationwide</span></li>
-                    </ul>
-                </div>
-
-                <!-- Contact Info -->
-                <div>
-                    <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider mb-3">Contact Us</h4>
-                    <ul class="space-y-2.5 text-sm text-slate-400">
-                        <li class="flex items-center gap-2.5">
-                            <i class="fa-solid fa-location-dot text-indigo-400"></i>
-                            <span>Dhaka & Chattogram, Bangladesh</span>
-                        </li>
-                        <li class="flex items-center gap-2.5">
-                            <i class="fa-solid fa-phone text-indigo-400"></i>
-                            <span>+880 1700-000000 (10 AM - 10 PM)</span>
-                        </li>
-                        <li class="flex items-center gap-2.5">
-                            <i class="fa-solid fa-envelope text-indigo-400"></i>
-                            <span>support@ibusgadgets.com</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="border-t border-slate-800/80 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-3">
-                <p>&copy; 2026 Ibus Creative Gadgets. All rights reserved.</p>
-                <p>Designed for Tech Enthusiasts in Bangladesh 🇧🇩</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- ==================== JAVASCRIPT LOGIC ==================== -->
     <script>
-        // -----------------------------------------------------------------
-        // আপনার আলাদা নম্বর দুটি এখানে সেট করুন:
-        // -----------------------------------------------------------------
-        const MY_WHATSAPP_NUMBER = "8801876899676"; // অর্ডার যাওয়ার WhatsApp নম্বর
-        const BKASH_NUMBER = "01628779156";       // টাকা পাঠানোর বিকাশ নম্বর (আপনার বিকাশ নম্বরটি এখানে বসিয়ে দিন)
-        // -----------------------------------------------------------------
+        const MY_WHATSAPP = "8801876899676";
+        const DEFAULT_BKASH = "01876899676";
+        const DELIVERY = 80;
 
-        // Auto-display bKash number in checkout instructions
-        window.addEventListener("DOMContentLoaded", () => {
-            const displayEl = document.getElementById("displayBkashNum");
-            if (displayEl) displayEl.textContent = BKASH_NUMBER;
-            renderProducts();
-            updateCartUI();
-        });
-
-        // 1. Product Catalog Data (8 Realistic Gadgets with BDT Prices)
-        const products = [
-            {
-                id: 1,
-                name: "Ibus Watch Ultra AMOLED",
-                category: "Smart Gadgets",
-                price: 3250,
-                specs: "1.96\" Always-On Display • BT Calling • IP68",
-                description: "Experience next-level smart living with the Ibus Watch Ultra AMOLED. Features a brilliant crystal-clear display, Bluetooth calling support, fitness tracking, and robust water resistance for everyday use.",
-                badge: "Best Seller",
-                image: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?auto=format&fit=crop&w=700&q=80"
-            },
-            {
-                id: 2,
-                name: "AeroPods Pro ANC Earbuds",
-                category: "Audio",
-                price: 2190,
-                specs: "35dB Active Noise Cancellation • 30H Battery",
-                description: "Immerse yourself in pure studio-grade sound. AeroPods Pro features powerful Active Noise Cancellation to block out ambient distraction and up to 30 hours of total playtime with the charging case.",
-                badge: "Hot Deal",
-                image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=700&q=80"
-            },
-            {
-                id: 3,
-                name: "BoomBox 360° RGB Speaker",
-                category: "Audio",
-                price: 2850,
-                specs: "20W Deep Bass • Waterproof • Dynamic LED",
-                description: "Bring the party anywhere with rich 360-degree sound and pounding deep bass. Built with rugged waterproof protection and dynamic RGB lighting that pulses to your music.",
-                badge: null,
-                image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=700&q=80"
-            },
-            {
-                id: 4,
-                name: "KeyChronix 75% Mechanical Keyboard",
-                category: "Accessories",
-                price: 4490,
-                specs: "Hot-Swappable Red Switches • Wireless + Type-C",
-                description: "Designed for typists and gamers alike. Enjoy buttery smooth tactile feedback with hot-swappable mechanical switches, multi-device wireless connectivity, and gorgeous backlighting.",
-                badge: "Pro Gear",
-                image: "https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&w=700&q=80"
-            },
-            {
-                id: 5,
-                name: "VoltCore 20,000mAh Fast Power Bank",
-                category: "Accessories",
-                price: 2350,
-                specs: "22.5W PD Fast Charge • Digital LED Meter",
-                description: "Never run out of juice on the go. High-capacity 20,000mAh battery equipped with 22.5W Power Delivery fast charging and a precise digital percentage status meter.",
-                badge: null,
-                image: "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?auto=format&fit=crop&w=700&q=80"
-            },
-            {
-                id: 6,
-                name: "ViperStrike Ultralight Gaming Mouse",
-                category: "Accessories",
-                price: 1790,
-                specs: "12,000 DPI Sensor • 59g Honeycomb • RGB",
-                description: "Ultra-lightweight 59g honeycomb shell design engineered for lightning-fast flicks and zero hand fatigue during long gaming or creative workflow sessions.",
-                badge: null,
-                image: "https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=700&q=80"
-            },
-            {
-                id: 7,
-                name: "SteadyAxis 3-Axis Phone Gimbal",
-                category: "Smart Gadgets",
-                price: 6490,
-                specs: "AI Face Tracking • Foldable • Anti-Shake",
-                description: "Capture cinematic buttery-smooth smartphone videos effortlessly. Features advanced AI face tracking, foldable portability, and professional 3-axis stabilization.",
-                badge: "Creator Pick",
-                image: "https://images.unsplash.com/photo-1589254065878-42c9da997008?auto=format&fit=crop&w=700&q=80"
-            },
-            {
-                id: 8,
-                name: "LumiArc Smart LED Desk Lamp",
-                category: "Smart Gadgets",
-                price: 1650,
-                specs: "Touch Dimming • 3 Color Modes • USB Port",
-                description: "Optimize your desk setup with eye-friendly adjustable illumination. Features smooth touch brightness dimming, 3 color temperature modes, and a convenient USB charging output.",
-                badge: null,
-                image: "https://images.unsplash.com/photo-1534073828943-f801091bb18c?auto=format&fit=crop&w=700&q=80"
-            }
+        // Default initial products if localStorage is empty
+        const defaultProducts = [
+            { id: 1, name: "Ibus Watch Ultra", category: "Smart Gadgets", price: 3250, specs: "1.96\" AMOLED • BT Calling", description: "Amazing smart watch with crystal display.", badge: "Best Seller", image: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?auto=format&fit=crop&w=700&q=80" },
+            { id: 2, name: "AeroPods Pro ANC", category: "Audio", price: 2190, specs: "35dB ANC • 30H Battery", description: "Studio-grade wireless sound.", badge: "Hot Deal", image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=700&q=80" }
         ];
 
-        // 2. Application State
+        let products = JSON.parse(localStorage.getItem("ibus_products")) || defaultProducts;
         let cart = [];
         let activeCategory = "All";
         let searchQuery = "";
-        const DELIVERY_CHARGE = 80;
 
-        // Helper: Format Number as BDT Currency (৳)
-        function formatBDT(amount) {
-            return "৳ " + amount.toLocaleString("en-IN");
-        }
+        function formatBDT(amt) { return "৳ " + amt.toLocaleString("en-IN"); }
 
-        // 3. Render Product Grid based on Search & Category
         function renderProducts() {
             const grid = document.getElementById("productGrid");
-            const emptyState = document.getElementById("emptyState");
-
-            const filtered = products.filter(product => {
-                const matchesCategory = activeCategory === "All" || product.category === activeCategory;
-                const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                                      product.specs.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                                      product.category.toLowerCase().includes(searchQuery.toLowerCase());
-                return matchesCategory && matchesSearch;
+            const empty = document.getElementById("emptyState");
+            const filtered = products.filter(p => {
+                const matchCat = activeCategory === "All" || p.category === activeCategory;
+                const matchSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) || p.specs.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchCat && matchSearch;
             });
 
             if (filtered.length === 0) {
                 grid.innerHTML = "";
-                emptyState.classList.remove("hidden");
+                empty.classList.remove("hidden");
                 return;
             }
-
-            emptyState.classList.add("hidden");
-            grid.innerHTML = filtered.map(product => `
-                <article class="group bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-xs hover:shadow-xl hover:border-indigo-200 transition-all duration-300 flex flex-col">
-                    <!-- Product Image Container -->
-                    <div onclick="openProductModal(${product.id})" class="relative aspect-[4/3] bg-slate-100 overflow-hidden cursor-pointer">
-                        <img 
-                            src="${product.image}" 
-                            alt="${product.name}" 
-                            loading="lazy"
-                            onerror="this.src='https://placehold.co/600x450/e2e8f0/475569?text=${encodeURIComponent(product.name)}'"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        >
-                        ${product.badge ? `
-                            <span class="absolute top-3 left-3 bg-slate-950/85 backdrop-blur-xs text-cyan-300 text-[11px] font-bold px-2.5 py-1 rounded-lg border border-slate-700">
-                                ${product.badge}
-                            </span>
-                        ` : ""}
-                        <span class="absolute bottom-3 right-3 bg-white/90 backdrop-blur-xs text-slate-700 text-[11px] font-semibold px-2.5 py-1 rounded-lg shadow-xs">
-                            ${product.category}
-                        </span>
+            empty.classList.add("hidden");
+            grid.innerHTML = filtered.map(p => `
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs hover:shadow-xl transition flex flex-col">
+                    <div onclick="openModal(${p.id})" class="relative aspect-[4/3] bg-slate-100 cursor-pointer overflow-hidden">
+                        <img src="${p.image}" class="w-full h-full object-cover hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x450?text=Gadget'">
+                        ${p.badge ? `<span class="absolute top-3 left-3 bg-slate-950 text-cyan-300 text-[10px] font-bold px-2 py-1 rounded">${p.badge}</span>`:''}
                     </div>
-
-                    <!-- Product Details -->
-                    <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+                    <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
                         <div>
-                            <h3 onclick="openProductModal(${product.id})" class="font-display font-bold text-slate-900 text-base sm:text-lg leading-snug group-hover:text-indigo-600 transition-colors cursor-pointer">
-                                ${product.name}
-                            </h3>
-                            <p class="text-slate-500 text-xs mt-1.5 leading-relaxed">
-                                ${product.specs}
-                            </p>
+                            <h3 onclick="openModal(${p.id})" class="font-bold text-slate-900 cursor-pointer hover:text-indigo-600">${p.name}</h3>
+                            <p class="text-xs text-slate-500 mt-1">${p.specs}</p>
                         </div>
-
-                        <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
-                            <div>
-                                <span class="text-[11px] text-slate-400 block">Price</span>
-                                <span class="font-display font-extrabold text-lg text-slate-900">
-                                    ${formatBDT(product.price)}
-                                </span>
-                            </div>
-
-                            <button 
-                                onclick="addToCart(${product.id})" 
-                                class="inline-flex items-center gap-2 bg-slate-900 hover:bg-indigo-600 text-white text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-xl transition-colors shadow-xs active:scale-95"
-                            >
-                                <i class="fa-solid fa-cart-plus"></i>
-                                <span>Add</span>
-                            </button>
+                        <div class="flex items-center justify-between pt-2 border-t">
+                            <span class="font-extrabold text-slate-900">${formatBDT(p.price)}</span>
+                            <button onclick="addToCart(${p.id})" class="bg-slate-900 hover:bg-indigo-600 text-white text-xs px-3.5 py-2 rounded-xl">Add</button>
                         </div>
                     </div>
-                </article>
+                </div>
             `).join("");
         }
 
-        // 4. Product Details Modal Functions
-        function openProductModal(productId) {
-            const product = products.find(p => p.id === productId);
-            if (!product) return;
-
-            const modalContent = document.getElementById("modalContent");
-            modalContent.innerHTML = `
-                <div class="aspect-[16/10] rounded-xl overflow-hidden bg-slate-100 border border-slate-200 mb-4">
-                    <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover">
+        function openModal(id) {
+            const p = products.find(x => x.id === id);
+            if (!p) return;
+            document.getElementById("modalContent").innerHTML = `
+                <img src="${p.image}" class="w-full h-56 object-cover rounded-xl" onerror="this.src='https://placehold.co/600x400'">
+                <div class="space-y-2 mt-4">
+                    <span class="text-xs bg-indigo-50 text-indigo-600 font-bold px-2 py-0.5 rounded">${p.category}</span>
+                    <h3 class="font-bold text-xl">${p.name}</h3>
+                    <p class="text-sm text-slate-600">${p.description || p.specs}</p>
+                    <p class="font-extrabold text-lg text-indigo-600">${formatBDT(p.price)}</p>
                 </div>
-                <div class="space-y-2">
-                    <div class="flex items-center justify-between">
-                        <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-lg">${product.category}</span>
-                        <span class="font-display font-extrabold text-xl text-slate-900">${formatBDT(product.price)}</span>
-                    </div>
-                    <h3 class="font-display font-extrabold text-xl text-slate-900">${product.name}</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">${product.description || product.specs}</p>
-                    <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-700 space-y-1">
-                        <p class="font-bold text-slate-900">Key Specifications:</p>
-                        <p>${product.specs}</p>
-                    </div>
-                </div>
-                <div class="pt-3">
-                    <button onclick="addToCart(${product.id}); closeProductModal(); toggleCart(true);" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg shadow-indigo-600/20 transition-all flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                        <span>Add to Cart & Checkout</span>
-                    </button>
-                </div>
+                <button onclick="addToCart(${p.id}); closeProductModal(); toggleCart(true);" class="w-full mt-4 bg-indigo-600 text-white font-bold py-3 rounded-xl">Add to Cart & Checkout</button>
             `;
-
-            const modal = document.getElementById("productModal");
-            modal.classList.remove("hidden");
-            modal.classList.add("flex");
-            document.body.style.overflow = "hidden";
+            document.getElementById("productModal").classList.remove("hidden");
+            document.getElementById("productModal").classList.add("flex");
         }
+        function closeProductModal() { document.getElementById("productModal").classList.add("hidden"); document.getElementById("productModal").classList.remove("flex"); }
 
-        function closeProductModal() {
-            const modal = document.getElementById("productModal");
-            modal.classList.add("hidden");
-            modal.classList.remove("flex");
-            document.body.style.overflow = "";
-        }
-
-        // 5. Category Filter Tab Event Listeners
         document.querySelectorAll(".category-btn").forEach(btn => {
             btn.addEventListener("click", () => {
-                document.querySelectorAll(".category-btn").forEach(b => {
-                    b.classList.remove("bg-slate-900", "text-white", "shadow-sm");
-                    b.classList.add("bg-white", "text-slate-600", "border", "border-slate-200");
-                });
-                btn.classList.remove("bg-white", "text-slate-600", "border", "border-slate-200");
-                btn.classList.add("bg-slate-900", "text-white", "shadow-sm");
-
-                activeCategory = btn.getAttribute("data-category");
+                document.querySelectorAll(".category-btn").forEach(b => b.className = "category-btn px-4 py-2 rounded-xl text-sm font-semibold bg-white text-slate-600 border border-slate-200");
+                btn.className = "category-btn px-4 py-2 rounded-xl text-sm font-semibold bg-slate-900 text-white";
+                activeCategory = btn.dataset.category;
                 renderProducts();
             });
         });
 
-        // 6. Live Search Sync
-        const desktopSearch = document.getElementById("desktopSearchInput");
-        const mobileSearch = document.getElementById("mobileSearchInput");
-
-        function handleSearchInput(value) {
-            searchQuery = value;
-            desktopSearch.value = value;
-            mobileSearch.value = value;
+        document.getElementById("desktopSearchInput").addEventListener("input", (e) => {
+            searchQuery = e.target.value;
             renderProducts();
-        }
+        });
 
-        desktopSearch.addEventListener("input", (e) => handleSearchInput(e.target.value));
-        mobileSearch.addEventListener("input", (e) => handleSearchInput(e.target.value));
-
-        function resetFilters() {
-            activeCategory = "All";
-            handleSearchInput("");
-            document.querySelector('.category-btn[data-category="All"]').click();
-        }
-
-        // 7. Shopping Cart Operations
-        function addToCart(productId) {
-            const product = products.find(p => p.id === productId);
-            if (!product) return;
-
-            const existingItem = cart.find(item => item.id === productId);
-            if (existingItem) {
-                existingItem.qty += 1;
-            } else {
-                cart.push({ ...product, qty: 1 });
-            }
-
-            updateCartUI();
-            showToast(`Added "${product.name}" to cart`);
-        }
-
-        function updateQuantity(productId, delta) {
-            const itemIndex = cart.findIndex(item => item.id === productId);
-            if (itemIndex === -1) return;
-
-            cart[itemIndex].qty += delta;
-            if (cart[itemIndex].qty <= 0) {
-                cart.splice(itemIndex, 1);
-            }
+        function addToCart(id) {
+            const p = products.find(x => x.id === id);
+            if (!p) return;
+            const item = cart.find(x => x.id === id);
+            if (item) item.qty++; else cart.push({...p, qty: 1});
             updateCartUI();
         }
 
-        function removeFromCart(productId) {
-            cart = cart.filter(item => item.id !== productId);
+        function updateCartQty(id, delta) {
+            const item = cart.find(x => x.id === id);
+            if (!item) return;
+            item.qty += delta;
+            if (item.qty <= 0) cart = cart.filter(x => x.id !== id);
             updateCartUI();
         }
 
         function updateCartUI() {
-            const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
-            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-
+            const totalItems = cart.reduce((s, x) => s + x.qty, 0);
+            const subtotal = cart.reduce((s, x) => s + (x.price * x.qty), 0);
             document.getElementById("cartBadge").textContent = totalItems;
-            document.getElementById("drawerItemCount").textContent = `${totalItems} ${totalItems === 1 ? "item" : "items"}`;
-
+            document.getElementById("drawerItemCount").textContent = totalItems;
+            
             const container = document.getElementById("cartItemsContainer");
             const emptyMsg = document.getElementById("emptyCartMessage");
-            const checkoutSection = document.getElementById("checkoutSection");
+            const checkoutSec = document.getElementById("checkoutSection");
 
             if (cart.length === 0) {
                 container.innerHTML = "";
                 emptyMsg.classList.remove("hidden");
-                checkoutSection.classList.add("hidden");
+                checkoutSec.classList.add("hidden");
                 return;
             }
-
             emptyMsg.classList.add("hidden");
-            checkoutSection.classList.remove("hidden");
+            checkoutSec.classList.remove("hidden");
 
-            container.innerHTML = cart.map(item => `
-                <div class="flex items-center gap-3.5 bg-slate-50 p-3 rounded-xl border border-slate-200/80">
-                    <img 
-                        src="${item.image}" 
-                        alt="${item.name}" 
-                        onerror="this.src='https://placehold.co/100x100/e2e8f0/475569?text=Tech'"
-                        class="w-16 h-16 rounded-lg object-cover shrink-0 bg-white border border-slate-200"
-                    >
-                    <div class="flex-1 min-w-0">
-                        <h4 class="font-display font-bold text-slate-900 text-sm truncate">${item.name}</h4>
-                        <p class="text-indigo-600 font-bold text-xs mt-0.5">${formatBDT(item.price)} each</p>
-                        
-                        <div class="flex items-center gap-2 mt-2">
-                            <button onclick="updateQuantity(${item.id}, -1)" aria-label="Decrease quantity" class="w-7 h-7 rounded-lg bg-white border border-slate-300 hover:bg-slate-100 text-slate-700 font-bold text-xs flex items-center justify-center">
-                                <i class="fa-solid fa-minus"></i>
-                            </button>
-                            <span class="text-xs font-bold text-slate-900 w-6 text-center">${item.qty}</span>
-                            <button onclick="updateQuantity(${item.id}, 1)" aria-label="Increase quantity" class="w-7 h-7 rounded-lg bg-white border border-slate-300 hover:bg-slate-100 text-slate-700 font-bold text-xs flex items-center justify-center">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
+            container.innerHTML = cart.map(x => `
+                <div class="flex items-center gap-3 bg-slate-50 p-2.5 rounded-xl border">
+                    <img src="${x.image}" class="w-14 h-14 object-cover rounded-lg">
+                    <div class="flex-1">
+                        <h4 class="font-bold text-xs">${x.name}</h4>
+                        <p class="text-indigo-600 text-xs font-bold">${formatBDT(x.price)}</p>
+                        <div class="flex items-center gap-2 mt-1">
+                            <button onclick="updateCartQty(${x.id}, -1)" class="w-6 h-6 bg-white border rounded text-xs">-</button>
+                            <span class="text-xs font-bold">${x.qty}</span>
+                            <button onclick="updateCartQty(${x.id}, 1)" class="w-6 h-6 bg-white border rounded text-xs">+</button>
                         </div>
-                    </div>
-
-                    <div class="text-right flex flex-col items-end justify-between self-stretch">
-                        <button onclick="removeFromCart(${item.id})" aria-label="Remove item" class="text-slate-400 hover:text-rose-600 text-xs p-1 transition-colors">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </button>
-                        <span class="font-display font-extrabold text-sm text-slate-900">
-                            ${formatBDT(item.price * item.qty)}
-                        </span>
                     </div>
                 </div>
             `).join("");
 
             document.getElementById("cartSubtotal").textContent = formatBDT(subtotal);
-            document.getElementById("deliveryFee").textContent = formatBDT(DELIVERY_CHARGE);
-            document.getElementById("cartTotal").textContent = formatBDT(subtotal + DELIVERY_CHARGE);
+            document.getElementById("cartTotal").textContent = formatBDT(subtotal + DELIVERY);
         }
 
-        // 8. Toggle bKash Input Fields
-        function togglePaymentFields() {
-            const selectedMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
-            const bkashFields = document.getElementById("bkashFields");
-            const bkashTrxInput = document.getElementById("bkashTrx");
-
-            if (selectedMethod === "bKash Payment") {
-                bkashFields.classList.remove("hidden");
-                bkashTrxInput.setAttribute("required", "true");
-            } else {
-                bkashFields.classList.add("hidden");
-                bkashTrxInput.removeAttribute("required");
-                bkashTrxInput.value = "";
-            }
-        }
-
-        // 9. Drawer & Mobile Menu Controls
         function toggleCart(open) {
-            const overlay = document.getElementById("cartOverlay");
             const drawer = document.getElementById("cartDrawer");
-
+            const overlay = document.getElementById("cartOverlay");
             if (open) {
                 overlay.classList.remove("hidden");
-                setTimeout(() => overlay.classList.remove("opacity-0"), 10);
                 drawer.classList.remove("translate-x-full");
-                document.body.style.overflow = "hidden";
             } else {
-                overlay.classList.add("opacity-0");
+                overlay.classList.add("hidden");
                 drawer.classList.add("translate-x-full");
-                document.body.style.overflow = "";
-                setTimeout(() => overlay.classList.add("hidden"), 300);
             }
         }
 
-        function toggleMobileMenu(open) {
-            const overlay = document.getElementById("mobileMenuOverlay");
-            const menu = document.getElementById("mobileMenuDrawer");
-
-            if (open) {
-                overlay.classList.remove("hidden");
-                setTimeout(() => overlay.classList.remove("opacity-0"), 10);
-                menu.classList.remove("-translate-x-full");
-                document.body.style.overflow = "hidden";
-            } else {
-                overlay.classList.add("opacity-0");
-                menu.classList.add("-translate-x-full");
-                document.body.style.overflow = "";
-                setTimeout(() => overlay.classList.add("hidden"), 300);
-            }
+        function togglePayFields() {
+            const method = document.querySelector('input[name="pay"]:checked').value;
+            const box = document.getElementById("bkashBox");
+            if (method === "bKash") box.classList.remove("hidden");
+            else box.classList.add("hidden");
         }
 
-        // 10. Checkout Submission & Direct WhatsApp Redirect (Separate Numbers)
-        function handleOrderSubmit(event) {
-            event.preventDefault();
+        function handleOrderSubmit(e) {
+            e.preventDefault();
             if (cart.length === 0) return;
+            const name = document.getElementById("custName").value;
+            const phone = document.getElementById("custPhone").value;
+            const address = document.getElementById("custAddress").value;
+            const method = document.querySelector('input[name="pay"]:checked').value;
+            const trx = document.getElementById("bkashTrx").value;
+            const subtotal = cart.reduce((s, x) => s + (x.price * x.qty), 0);
+            
+            let itemsStr = "";
+            cart.forEach((x, i) => { itemsStr += `${i+1}. ${x.name} (${x.qty}x) - ৳ ${x.price * x.qty}\n`; });
 
-            const name = document.getElementById("custName").value.trim();
-            const phone = document.getElementById("custPhone").value.trim();
-            const address = document.getElementById("custAddress").value.trim();
-            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
-            const bkashTrx = document.getElementById("bkashTrx").value.trim();
+            let msg = `*🛍️ NEW ORDER*\n👤 Name: ${name}\n📞 Phone: ${phone}\n📍 Address: ${address}\n\n*Items:*\n${itemsStr}\nDelivery: ৳ ${DELIVERY}\n*Total: ৳ ${subtotal + DELIVERY}*\nPayment: ${method}`;
+            if(method === "bKash") msg += `\nTrxID/Sender: ${trx}`;
 
-            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-            const grandTotal = subtotal + DELIVERY_CHARGE;
-            const randomOrderNum = "IB-" + Math.floor(1000 + Math.random() * 9000);
+            window.location.href = `https://wa.me/${MY_WHATSAPP}?text=` + encodeURIComponent(msg);
+        }
 
-            let itemsText = "";
-            cart.forEach((item, index) => {
-                itemsText += `${index + 1}. ${item.name} (${item.qty} pcs) - ৳ ${item.price * item.qty}\n`;
-            });
-
-            // Build WhatsApp message including payment details and receiving bkash number
-            let paymentDetailsText = `Payment Method: ${paymentMethod}`;
-            if (paymentMethod === "bKash Payment") {
-                paymentDetailsText += `\n📱 bKash TrxID / Sender: ${bkashTrx}\n(Paid to bKash: ${BKASH_NUMBER})`;
-            }
-
-            const whatsappMessage = `*🛍️ NEW ORDER: ${randomOrderNum}*\n\n` +
-                `*Customer Details:*\n` +
-                `👤 Name: ${name}\n` +
-                `📞 Phone: ${phone}\n` +
-                `📍 Address: ${address}\n\n` +
-                `*Order Items:*\n${itemsText}\n` +
-                `🚚 Delivery Fee: ৳ ${DELIVERY_CHARGE}\n` +
-                `💰 *Total Amount: ৳ ${grandTotal}*\n\n` +
-                `${paymentDetailsText}`;
-
-            const encodedMessage = encodeURIComponent(whatsappMessage);
-            const whatsappUrl = `https://wa.me/${MY_WHATSAPP_NUMBER}?text=${encodedMessage}`;
-
-            // Reset Cart & Form, Close Drawer
-            cart = [];
+        window.addEventListener("DOMContentLoaded", () => {
+            renderProducts();
             updateCartUI();
-            document.getElementById("checkoutForm").reset();
-            togglePaymentFields();
-            toggleCart(false);
-
-            // Direct Redirect to WhatsApp
-            window.location.href = whatsappUrl;
-        }
-
-        // 11. Toast Notification Helper
-        let toastTimeout;
-        function showToast(message) {
-            const toast = document.getElementById("toastNotification");
-            document.getElementById("toastMessage").textContent = message;
-
-            toast.classList.remove("translate-y-20", "opacity-0");
-            clearTimeout(toastTimeout);
-            toastTimeout = setTimeout(() => {
-                toast.classList.add("translate-y-20", "opacity-0");
-            }, 2400);
-        }
+        });
     </script>
 </body>
 </html>
