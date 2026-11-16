@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -400,6 +399,9 @@
 
     <!-- ==================== JAVASCRIPT LOGIC ==================== -->
     <script>
+        // আপনার WhatsApp নাম্বার (দেশের কোড সহ সেট করা আছে)
+        const MY_WHATSAPP_NUMBER = "8801876899676";
+
         // 1. Product Catalog Data (8 Realistic Gadgets with BDT Prices & Verified Unsplash Tech Photos)
         const products = [
             {
@@ -708,7 +710,7 @@
             }
         }
 
-        // 8. Checkout Submission & Order Summary Modal
+        // 8. Checkout Submission & WhatsApp Integration
         function handleOrderSubmit(event) {
             event.preventDefault();
             if (cart.length === 0) return;
@@ -721,7 +723,28 @@
             const grandTotal = subtotal + DELIVERY_CHARGE;
             const randomOrderNum = "IB-" + Math.floor(1000 + Math.random() * 9000);
 
-            // Populate Modal
+            // Build items description for WhatsApp message
+            let itemsText = "";
+            cart.forEach((item, index) => {
+                itemsText += `${index + 1}. ${item.name} (${item.qty} pcs) - ৳ ${item.price * item.qty}\n`;
+            });
+
+            // Create formatted WhatsApp message
+            const whatsappMessage = `*🛍️ NEW ORDER: ${randomOrderNum}*\n\n` +
+                `*Customer Details:*\n` +
+                `👤 Name: ${name}\n` +
+                `📞 Phone: ${phone}\n` +
+                `📍 Address: ${address}\n\n` +
+                `*Order Items:*\n${itemsText}\n` +
+                `🚚 Delivery Fee: ৳ ${DELIVERY_CHARGE}\n` +
+                `💰 *Total Amount: ৳ ${grandTotal}*\n\n` +
+                `Payment Method: Cash on Delivery`;
+
+            // Encode message for URL
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            const whatsappUrl = `https://wa.me/${MY_WHATSAPP_NUMBER}?text=${encodedMessage}`;
+
+            // Populate Modal Summary
             document.getElementById("orderIdBadge").textContent = `Order #${randomOrderNum}`;
             const itemsListHtml = cart.map(item => `
                 <div class="flex justify-between text-xs text-slate-600">
@@ -746,6 +769,14 @@
                 <div class="flex justify-between font-bold text-sm text-indigo-600 pt-1">
                     <span>Total Cash on Delivery</span>
                     <span>${formatBDT(grandTotal)}</span>
+                </div>
+
+                <!-- Direct Send to WhatsApp Button to bypass popup blockers -->
+                <div class="pt-3">
+                    <a href="${whatsappUrl}" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl shadow-md flex items-center justify-center gap-2 transition-all">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>Send Order to WhatsApp Now</span>
+                    </a>
                 </div>
             `;
 
@@ -787,4 +818,3 @@
     </script>
 </body>
 </html>
-```
